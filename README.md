@@ -387,6 +387,18 @@ Dapat dilihat bahwa kami membuat sebuah domain general dan alias www untuk gener
 ### Nomor 12
 Tidak hanya itu, Luffy juga menyiapkan error file 404.html pada folder /error untuk mengganti error kode pada apache
 ### Jawaban Nomor 12
+Pada Skypie
+
+Pada Skypie kami edit konfigurasi file pada `/etc/apache2/sites-available/super.franky.t12.com.conf` sebagai berikut
+```
+ErrorDocument 404 /error/404.html
+<Files "/var/www/super.franky.t12.com/error/404.html">
+	<If "-z %{ENV:REDIRECT_STATUS}">
+		RedirectMatch 404 ^/error/404.html$
+	</If>
+</Files>
+```
+Dalam file tersebut kami menambahkan `ErrorDocument` dan `Files` sehingga apabila muncul error code 404 pada web akan meredirect menuju file 404 yang sudah disiapkan yaitu `/error/404.html` 
 ##### Testing
 
 ### Nomor 13
