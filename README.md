@@ -369,18 +369,22 @@ Dapat dilihat bahwa kami membuat sebuah domain general dan alias www untuk gener
 ![image](https://user-images.githubusercontent.com/50267676/139441057-752b6b47-1ede-453e-b743-828d7add1b4a.png)
 
 ### Nomor 8
+Setelah melakukan konfigurasi server, maka dilakukan konfigurasi Webserver. Pertama dengan webserver www.franky.yyy.com. Pertama, luffy membutuhkan webserver dengan DocumentRoot pada /var/www/franky.yyy.com.
 ### Jawaban Nomor 8
 ##### Testing
 
 ### Nomor 9
+Setelah itu, Luffy juga membutuhkan agar url www.franky.yyy.com/index.php/home dapat menjadi menjadi www.franky.yyy.com/home.
 ### Jawaban Nomor 9
 ##### Testing
 
 ### Nomor 10
+Setelah itu, pada subdomain www.super.franky.yyy.com, Luffy membutuhkan penyimpanan aset yang memiliki DocumentRoot pada /var/www/super.franky.yyy.com.
 ### Jawaban Nomor 10
 ##### Testing
 
 ### Nomor 11
+Akan tetapi, pada folder /public, Luffy ingin hanya dapat melakukan directory listing saja.
 ### Jawaban Nomor 11
 ##### Testing
 
