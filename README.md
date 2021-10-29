@@ -405,7 +405,7 @@ Untuk melakukan pengujian kami menggunakan perintah `lynx` didalam loguetown pad
 lynx super.franky.t12.com/asdasd
 ```
 Sehingga hasilnya akan sebagai berikut
-
+![](Gambar/Nomor%2012.jpg)
 
 ### Nomor 13
 Luffy juga meminta Nami untuk dibuatkan konfigurasi virtual host. Virtual host ini bertujuan untuk dapat mengakses file asset www.super.franky.yyy.com/public/js menjadi www.super.franky.yyy.com/js
@@ -425,6 +425,7 @@ Untuk memastikan kami mencoba untuk membuka link www.super.franky.yyy.com/js men
 lynx super.franky.t12.com/js
 ```
 Lalu hasilnya adalah sebagai berikut
+![](Gambar/Nomor%2013.jpg)
 
 ### Nomor 14
 Dan Luffy meminta untuk web www.general.mecha.franky.yyy.com hanya bisa diakses dengan port 15000 dan port 15500
@@ -451,6 +452,8 @@ dan
 lynx general.mecha.franky.t12.com:15500
 ```
 Sehingga hasilnya sebagai berikut
+![](Gambar/Nomor%2015a.jpg)
+![](Gambar/Nomor%2014a.jpg)
 
 Disini kita harus memasukkan username dan password untuk autentikasi yang akan dijelaskan pada nomor selanjutnya
 
@@ -471,8 +474,9 @@ Selanjutnya untuk testing akan dimasukkan perintah berikut pada loguetown
 ```
 lynx general.mecha.franky.t12.com:15000
 ```
+![](Gambar/Nomor%2015a.jpg)
 Selanjutnya kita akan diminta untuk mengetikkan username dan password, ketika benar maka akan menampilkan seperti berikut
-
+![](Gambar/Nomor%2015b.jpg)
 
 ### Nomor 16
 Dan setiap kali mengakses IP Skypie akan dialihkan secara otomatis ke www.franky.yyy.com
@@ -492,6 +496,7 @@ Kita masukkan perintah `lynx` diikuti dengan IP Address Skypie untuk mengeceknya
 lynx 192.217.2.4
 ```
 Maka akan langsung terbuka web www.franky.t12.com sebagai berikut
+![](Gambar/Nomor%2016.jpg)
 
 ### Nomor 17
 Dikarenakan Franky juga ingin mengajak temannya untuk dapat menghubunginya melalui website www.super.franky.yyy.com, dan dikarenakan pengunjung web server pasti akan bingung dengan randomnya images yang ada, maka Franky juga meminta untuk mengganti request gambar yang memiliki substring “franky” akan diarahkan menuju franky.png
@@ -522,4 +527,4 @@ Lalu hasil testing dengan perintah
 lynx super.franky.t12.com/frankyblablabla.jpeg
 ```
 adalah sebagai berikut
-
+![](Gambar/Nomor%2017.jpg)
