@@ -387,8 +387,8 @@ Dapat dilihat bahwa kami membuat sebuah domain general dan alias www untuk gener
 ### Nomor 12
 Tidak hanya itu, Luffy juga menyiapkan error file 404.html pada folder /error untuk mengganti error kode pada apache
 ### Jawaban Nomor 12
-Pada Skypie
 
+##### Skypie
 Pada Skypie kami edit konfigurasi file pada `/etc/apache2/sites-available/super.franky.t12.com.conf` sebagai berikut
 ```
 ErrorDocument 404 /error/404.html
@@ -400,28 +400,126 @@ ErrorDocument 404 /error/404.html
 ```
 Dalam file tersebut kami menambahkan `ErrorDocument` dan `Files` sehingga apabila muncul error code 404 pada web akan meredirect menuju file 404 yang sudah disiapkan yaitu `/error/404.html` 
 ##### Testing
+Untuk melakukan pengujian kami menggunakan perintah `lynx` didalam loguetown pada link directory yang tidak ada sehingga nantinya akan mengeluarkan error 404 yaitu
+```
+lynx super.franky.t12.com/asdasd
+```
+Sehingga hasilnya akan sebagai berikut
+
 
 ### Nomor 13
 Luffy juga meminta Nami untuk dibuatkan konfigurasi virtual host. Virtual host ini bertujuan untuk dapat mengakses file asset www.super.franky.yyy.com/public/js menjadi www.super.franky.yyy.com/js
+
 ### Jawaban Nomor 13
+
+##### Skypie
+Pada skypie sekali lagi kami edit konfigurasi pada `/etc/apache2/sites-available/super.franky.t12.com.conf` sebagai berikut
+```
+Alias "/js" "/var/www/super.franky.t12.com/public/js"
+```
+Maksudnya adalah bahwa `Alias` disini akan mentranslate direktori web `/js` menjadi `/public/js`
+
 ##### Testing
+Untuk memastikan kami mencoba untuk membuka link www.super.franky.yyy.com/js menggunakan perintah
+```
+lynx super.franky.t12.com/js
+```
+Lalu hasilnya adalah sebagai berikut
 
 ### Nomor 14
 Dan Luffy meminta untuk web www.general.mecha.franky.yyy.com hanya bisa diakses dengan port 15000 dan port 15500
+
 ### Jawaban Nomor 14
+
+##### Skypie
+Kami memasukkan port 15000 dan port 15500 pada file `etc/apache2/sites-available/general.mecha.franky.t12.com.conf` sebagai berikut
+```
+<VirtualHost *:15000 *:15500>
+	...
+	...
+</VirtualHost>
+```
+Maka dengan begitu web www.general.mecha.franky.yyy.com hanya akan bisa diakses dengan port 15000 dan port 15500
+
 ##### Testing
+Kita akan cek dengan memasukkan perintah pada loguetown
+```
+lynx general.mecha.franky.t12.com:15000
+```
+dan 
+```
+lynx general.mecha.franky.t12.com:15500
+```
+Sehingga hasilnya sebagai berikut
+
+Disini kita harus memasukkan username dan password untuk autentikasi yang akan dijelaskan pada nomor selanjutnya
 
 ### Nomor 15
 Dengan autentikasi username luffy dan password onepiece dan file di /var/www/general.mecha.franky.yyy
+
 ### Jawaban Nomor 15
+
+##### Skypie
+Pada skypie pertama-tama kami memasukkan command
+```
+htpasswd -b -c /var/www/general.mecha.franky.t12 luffy onepiece
+```
+Perintah tersebut berfungsi untuk mengatur basic authentication yang disimpan pada file `/var/www/general.mecha.franky.t12` dengan username `luffy` dan password `onepiece`
+
 ##### Testing
+Selanjutnya untuk testing akan dimasukkan perintah berikut pada loguetown
+```
+lynx general.mecha.franky.t12.com:15000
+```
+Selanjutnya kita akan diminta untuk mengetikkan username dan password, ketika benar maka akan menampilkan seperti berikut
+
 
 ### Nomor 16
 Dan setiap kali mengakses IP Skypie akan dialihkan secara otomatis ke www.franky.yyy.com
+
 ### Jawaban Nomor 16
+
+##### Skypie
+Pada file `/etc/apache2/sites-available/000-default.conf` kami menambahkan
+```
+redirect permanent / http://franky.t12.com
+```
+Sehingga akan langsung meredirect ke www.franky.t12.com ketika membuka IP Skypie
+
 ##### Testing
+Kita masukkan perintah `lynx` diikuti dengan IP Address Skypie untuk mengeceknya
+```
+lynx 192.217.2.4
+```
+Maka akan langsung terbuka web www.franky.t12.com sebagai berikut
 
 ### Nomor 17
 Dikarenakan Franky juga ingin mengajak temannya untuk dapat menghubunginya melalui website www.super.franky.yyy.com, dan dikarenakan pengunjung web server pasti akan bingung dengan randomnya images yang ada, maka Franky juga meminta untuk mengganti request gambar yang memiliki substring “franky” akan diarahkan menuju franky.png
+
 ### Jawaban Nomor 17
+
+##### Skypie
+Disini kami membuat file `/var/www/super.franky.t12.com/.htaccess` yang isinya sebagai berikut
+```
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !^/public/images/franky.png$
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteRule ^(.*)franky(.*)$ /public/images/franky.png [R=301,L]
+```
+Dimana ketika apapun yang memiliki kata franky akan diarahkan menuju `/public/images/franky.png`
+
+Kemudian pada file `/etc/apache2/sites-available/super.franky.t12.com.conf` kami tambahkan directory nya
+```
+<Directory /var/www/super.franky.t12.com>
+        Options +FollowSymLinks -Multiviews
+	AllowOverride All
+</Directory>
+```
+
 ##### Testing
+Lalu hasil testing dengan perintah 
+```
+lynx super.franky.t12.com/frankyblablabla.jpeg
+```
+adalah sebagai berikut
+
