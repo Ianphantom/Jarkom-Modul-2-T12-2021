@@ -381,6 +381,8 @@ Pertama kami menginstall apache2 dengan syntax `apt-get install apache2 -y`, set
 ```
 Hal ini membuat DocumentRoot dari subdomain www.franky.yyy.com akan terletak di `/var/www/franky.t12.com`.
 ##### Testing
+Apabila di lynx dari LogueTown akan menampilkan isi dari `/var/www/franky.t12.com`.
+![image](https://user-images.githubusercontent.com/63605397/139519979-a57730f3-d2c1-4b12-a82e-7517b818463f.png)
 
 ### Nomor 9
 Setelah itu, Luffy juga membutuhkan agar url www.franky.yyy.com/index.php/home dapat menjadi menjadi www.franky.yyy.com/home.
@@ -392,6 +394,8 @@ Alias "/home" "/var/www/franky.t12.com/index.php/home"
 ```
 Untuk membuat `/index.php/home` akan berpindah ke `/home` saja.
 ##### Testing
+Berikut ini tampilan apabila kita menggunakan url www.franky.yyy.com/home. Terlihat sama dengan nomor 8 karena isinya memang sama.
+![image](https://user-images.githubusercontent.com/63605397/139520096-2901d3dd-9f41-497b-8a5d-d850e1358c2b.png)
 
 ### Nomor 10
 Setelah itu, pada subdomain www.super.franky.yyy.com, Luffy membutuhkan penyimpanan aset yang memiliki DocumentRoot pada `/var/www/super.franky.yyy.com`.
@@ -404,8 +408,10 @@ Disini kami membuat directory baru di dalam `/var/www/` dengan nama super.franky
         ServerName super.franky.t12.com
         ServerAlias www.super.franky.t12.com
 ```
-Hal ini membuat DocumentRoot dari subdomain www.super.franky.yyy.com akan terletak di `/var/www/super.franky.t12.com`.
+Hal ini membuat DocumentRoot dari subdomain www.super.franky.t12.com akan terletak di `/var/www/super.franky.t12.com`.
 ##### Testing
+Dapat dilihat bahwa apabila kita melakukan lynx ke www.super.franky.t12.com akan menampilkan isi dari `/var/www/super.franky.t12.com`. Dapat dilihat juga bahwa isi dari domain tersebut adalah public yang berisikan asset.
+![image](https://user-images.githubusercontent.com/63605397/139520212-c8a8c584-e95d-4840-b90f-f939c5e064bb.png)
 
 ### Nomor 11
 Akan tetapi, pada folder `/public`, Luffy ingin hanya dapat melakukan directory listing saja.
@@ -418,7 +424,8 @@ Untuk membuat directory listing, kami menambahkan konfigurasi di `/etc/apache2/s
         </Directory>
 ```
 ##### Testing
-
+Apabila kita melakukan lynx ke www.super.franky.t12.com akan menampilkan directory listing.
+![image](https://user-images.githubusercontent.com/63605397/139520122-32e91c2d-1b62-4aaa-85f0-9c4fa6c4774f.png)
 ### Nomor 12
 Tidak hanya itu, Luffy juga menyiapkan error file 404.html pada folder `/error` untuk mengganti error kode pada apache
 ### Jawaban Nomor 12
