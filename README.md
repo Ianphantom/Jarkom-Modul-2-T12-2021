@@ -570,3 +570,7 @@ lynx super.franky.t12.com/frankyblablabla.jpeg
 ```
 adalah sebagai berikut
 ![](Gambar/Nomor%2017.jpg)
+
+
+### Kendala Pengerjaan
+Pada saat awal pengerjaan sebenarnya sudah selesai semua tapi karena masih tidak tahu kami langsung melakukan export dan stop gns tanpa membuat shell script terlebih dahulu sehingga harus mengerjakan ulang dari awal
