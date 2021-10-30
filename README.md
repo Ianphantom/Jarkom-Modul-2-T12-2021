@@ -371,25 +371,56 @@ Dapat dilihat bahwa kami membuat sebuah domain general dan alias www untuk gener
 ### Nomor 8
 Setelah melakukan konfigurasi server, maka dilakukan konfigurasi Webserver. Pertama dengan webserver www.franky.yyy.com. Pertama, luffy membutuhkan webserver dengan DocumentRoot pada `/var/www/franky.yyy.com`.
 ### Jawaban Nomor 8
+### Pada Skypie
+Pertama kami menginstall apache2 dengan syntax `apt-get install apache2 -y`, setelah itu membuat directory franky.t12.com di `var/www/`. Untuk konfigurasi file dari subdomain tersebut akan dilakukan di `/etc/apache2/sites-available/franky.t12.com.conf` dan mengisinya dengan
+```
+	ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/franky.t12.com
+        ServerName franky.t12.com
+        ServerAlias www.franky.t12.com
+```
+Hal ini membuat DocumentRoot dari subdomain www.franky.yyy.com akan terletak di `/var/www/franky.t12.com`.
 ##### Testing
 
 ### Nomor 9
 Setelah itu, Luffy juga membutuhkan agar url www.franky.yyy.com/index.php/home dapat menjadi menjadi www.franky.yyy.com/home.
 ### Jawaban Nomor 9
+### Pada Skypie
+Kami menambahkan syntax sebagai berikut di dalam `/etc/apache2/sites-available/franky.t12.com.conf`
+```
+Alias "/home" "/var/www/franky.t12.com/index.php/home"
+```
+Untuk membuat `/index.php/home` akan berpindah ke `/home` saja.
 ##### Testing
 
 ### Nomor 10
 Setelah itu, pada subdomain www.super.franky.yyy.com, Luffy membutuhkan penyimpanan aset yang memiliki DocumentRoot pada `/var/www/super.franky.yyy.com`.
 ### Jawaban Nomor 10
+### Pada Skypie
+Disini kami membuat directory baru di dalam `/var/www/` dengan nama super.franky.t12.com, setelah itu melakukan command wget untuk mendapatkan file asset yang akan dimasukkan kedalamnya, setelah file di download akan langsung diunzip menggunakan command unzip dan memindahkan isi folder yang berupa asset lalu menghapus folder defaultnya. Di dalam `/etc/apache2/sites-available/` dibuat juga file dengan nama super.franky.t12.com.conf dan diisi dengan
+```
+	ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/super.franky.t12.com
+        ServerName super.franky.t12.com
+        ServerAlias www.super.franky.t12.com
+```
+Hal ini membuat DocumentRoot dari subdomain www.super.franky.yyy.com akan terletak di `/var/www/super.franky.t12.com`.
 ##### Testing
 
 ### Nomor 11
 Akan tetapi, pada folder `/public`, Luffy ingin hanya dapat melakukan directory listing saja.
 ### Jawaban Nomor 11
+### Pada Skypie
+Untuk membuat directory listing, kami menambahkan konfigurasi di `/etc/apache2/sites-available/super.franky.t12.com.conf` sebagai berikut
+```
+	<Directory /var/www/super.franky.t12.com/public>
+                Options +Indexes
+        </Directory>
+```
 ##### Testing
 
 ### Nomor 12
-Tidak hanya itu, Luffy juga menyiapkan error file 404.html pada folder /error untuk mengganti error kode pada apache
+Tidak hanya itu, Luffy juga menyiapkan error file 404.html pada folder `/error` untuk mengganti error kode pada apache
 ### Jawaban Nomor 12
 
 ##### Skypie
